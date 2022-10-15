@@ -2,6 +2,8 @@
 
 import { test, expect } from '@playwright/test'
 
+import { loadHomePage, assertTitle } from '../helpers'
+
 test('Simple basic test', async ({ page }) => {
     // test code
     await page.goto('https://www.example.com')  // open and load the page
@@ -127,7 +129,7 @@ test('Single element screenshot', async ({ page }) => {
 
 // Hooks - to simplify the tests if they use repetitive code, e.g. login
 
-test.describe.only('Hooks', () => {
+test.describe('Hooks', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://www.hugoboss.com/pl/pl/kobiety-odziez/?gclid=CjwKCAjwtKmaBhBMEiwAyINuwBpivvw3W7d-uibExNk6dDYu9AgkBFRk1D5wlqJ-mNMhFFjK8r_fsxoCMkEQAvD_BwE&targetid=kwd-357405976750&ef_id=YqmfRgAJEUwyWAA2:20221015184157:s')
     })
@@ -140,5 +142,14 @@ test.describe.only('Hooks', () => {
         const mainLogo = page.locator('.main-header__logo-link main-header__logo-link--full')
         expect(mainLogo).toBeVisible
     })
+})
+
+
+// Custom functions / helpers
+// after creating "helpers" file with custom functions:
+
+test.only('Example Custom Helpers', async ({ page }) => {   //npx playwright test
+    await loadHomePage(page)
+    await assertTitle(page)
 })
 
