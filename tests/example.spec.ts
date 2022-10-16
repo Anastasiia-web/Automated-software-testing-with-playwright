@@ -2,7 +2,7 @@
 
 import { test, expect } from '@playwright/test'
 
-import { loadHomePage, assertTitle } from '../helpers'
+import { loadHomePage, assertTitle, screenshotsFullPage, screenshotsElement } from '../helpers'
 
 test('Simple basic test', async ({ page }) => {
     // test code
@@ -127,9 +127,12 @@ test('Single element screenshot', async ({ page }) => {
     await singleElement.screenshot({ path: 'singleElement.png' })
 })
 
-// Hooks - to simplify the tests if they use repetitive code, e.g. login
+// Hooks (using e.g. beforeEach) - to simplify the tests if they use repetitive code, e.g. login
 
-test.describe('Hooks', () => {
+// "".describe" for test suits creation
+// ".only" can be added after for running only this
+
+test.describe.parallel.only('Hooks', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://www.hugoboss.com/pl/pl/kobiety-odziez/?gclid=CjwKCAjwtKmaBhBMEiwAyINuwBpivvw3W7d-uibExNk6dDYu9AgkBFRk1D5wlqJ-mNMhFFjK8r_fsxoCMkEQAvD_BwE&targetid=kwd-357405976750&ef_id=YqmfRgAJEUwyWAA2:20221015184157:s')
     })
@@ -144,12 +147,20 @@ test.describe('Hooks', () => {
     })
 })
 
-
-// Custom functions / helpers
+// Using Custom functions / helpers
 // after creating "helpers" file with custom functions:
 
-test.only('Example Custom Helpers', async ({ page }) => {   //npx playwright test
-    await loadHomePage(page)
+test('Example Custom Helpers', async ({ page }) => {   //npx playwright test
+    await loadHomePage(page)             // page loading
     await assertTitle(page)
 })
+
+test('Example Custom Functions Screeenshots', async ({ page }) => {   //npx playwright test
+    await loadHomePage(page)              // page loading
+    // await page.pause()                 // inspector for PAUSING & DEBUGING  -  delete or comment always before production
+    await screenshotsFullPage(page)
+    await screenshotsElement(page)
+})
+
+// " npm run tests:chrome -- --headed " if scripts are added into package.json configs are changed for "projects" according to playwright.config.ts file
 

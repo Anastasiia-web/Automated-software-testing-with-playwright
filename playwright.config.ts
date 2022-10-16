@@ -1,17 +1,15 @@
-// after creating this config file with projects run e.g.: " npx playwright test --config=playwright.config.ts --project=Chromium "
-
-import { PlaywrightTestConfig } from "@playwright/test";
+import { PlaywrightTestConfig } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
     timeout: 60000, // 60 sec    or   "0" - for no timeout
     retries: 0,
     use: {
-        headless: false,
+        headless: true, // " false " will open the browser every time
         viewport: { width: 1280, height: 720 },
         actionTimeout: 15000, // 15 sec
         ignoreHTTPSErrors: true,
-        video: 'off',
-        screenshot: 'off'
+        video: 'retain-on-failure',
+        screenshot: 'only-on-failure'
     },
     projects: [
         {
@@ -25,9 +23,14 @@ const config: PlaywrightTestConfig = {
             use: {
                 browserName: 'firefox'
             }
+        },
+        {
+            name: 'Webkit',
+            use: {
+                browserName: 'webkit'
+            }
         }
     ]
-
 }
 
 export default config
