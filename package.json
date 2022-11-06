@@ -6,11 +6,12 @@
   "scripts": {
     "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium",
     "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox",
-    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit"
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit",
+    "tests:e2e": "playwright test --config=e2e.config.ts --project=Chromium"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Anastasiia-web/AutomatedTestingWithPlaywright.git"
+    "url": "git+https://github.com/Anastasiia-web/Automated-software-testing-with-playwright.git"
   },
   "author": "Anastasiia Ivashchenko",
   "license": "ISC",

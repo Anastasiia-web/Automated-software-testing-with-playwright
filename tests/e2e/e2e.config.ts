@@ -3,13 +3,14 @@ import { PlaywrightTestConfig } from '@playwright/test'
 const config: PlaywrightTestConfig = {
     timeout: 60000, // 60 sec    or   "0" - for no timeout
     retries: 0,
+    testDir: "tests/e2e",
     use: {
         headless: true, // " false " will open the browser every time
         viewport: { width: 1280, height: 720 },
-        actionTimeout: 15000, // 15 sec
+        actionTimeout: 10000, //      15000   = 15 sec
         ignoreHTTPSErrors: true,
-        video: 'retain-on-failure',
-        screenshot: 'only-on-failure'
+        video: 'off',                            // 'retain-on-failure'
+        screenshot: 'off'                        // 'only-on-failure'
     },
     projects: [
         {
