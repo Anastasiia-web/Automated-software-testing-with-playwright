@@ -33,6 +33,6 @@ test.describe.only("Filter transactions", () => {
 })
 
 
-// npx playwright test tests/e2e/e2e-transfer-funds.spec.ts      // to run the tests from a paticular folder
-// npm run tests:e2e                                     // to run the tests according to the script in 'package.json' file
+// npx playwright test tests/e2e/e2e-filter-transactions.spec.ts      // to run the tests from a paticular folder
+// npm run tests:e2e                                                  // to run the tests according to the script in 'package.json' file
 // if '.only' is added to e.g. "test.describe.only"  =>  means that ONLY this test/file will be run from the folder)
