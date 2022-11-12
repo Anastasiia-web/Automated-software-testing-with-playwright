@@ -20,7 +20,7 @@ test.describe.parallel('Login / Logout Flow', () => {
         await expect(errorMessage).toContainText('Login and/or password are wrong.')
     })
 
-    // Positive scenario + Logout from the application // https://zero.webappsecurity.com/
+    // Positive scenario + Logout from the application // http://zero.webappsecurity.com/
     test('Positive Scenario for login + logout', async ({ page }) => {
         await page.click('#signin_button')
         await page.type('#user_login', 'username')
