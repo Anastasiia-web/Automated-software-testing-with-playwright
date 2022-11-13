@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.only('Feedback form', () => {
+test.describe('Feedback form', () => {
     // hook
     test.beforeEach(async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
