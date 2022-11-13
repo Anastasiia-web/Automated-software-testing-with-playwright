@@ -16,7 +16,7 @@ test.describe.parallel('Login / Logout Flow', () => {
         await page.type('#user_password', 'invalid')
         await page.click('.btn-primary')
 
-        const errorMessage = await page.locator('.alert-error')
+        const errorMessage = page.locator('.alert-error')
         await expect(errorMessage).toContainText('Login and/or password are wrong.')
     })
 
@@ -27,8 +27,8 @@ test.describe.parallel('Login / Logout Flow', () => {
         await page.type('#user_password', 'password')
         await page.click('text = Sign in')
 
-        const accountSummaryTab = await page.locator('#account_summary_tab')
-        await expect(accountSummaryTab).toBeVisible
+        const accountSummaryTab = page.locator('#account_summary_tab')
+        expect(accountSummaryTab).toBeVisible
 
         await page.goto('http://zero.webappsecurity.com/logout.html')     // logout test 
         await expect(page).toHaveURL('http://zero.webappsecurity.com/index.html')   // redirect to login page after logout

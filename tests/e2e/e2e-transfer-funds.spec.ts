@@ -11,8 +11,8 @@ test.describe('Transfer funds and make payments', () => {
     })
 
     test('Successful login', async ({ page }) => {
-        const signInBtn = await page.locator("input[name='submit']")
-        await expect(signInBtn).not.toBeVisible
+        const signInBtn = page.locator("input[name='submit']")
+        expect(signInBtn).not.toBeVisible
     })
 
     test('Transfer funds', async ({ page }) => {
@@ -24,12 +24,12 @@ test.describe('Transfer funds and make payments', () => {
         await page.type('#tf_description', 'Test funds transfer')
         await page.click('#btn_submit')
 
-        const boardHeader = await page.locator('h2.board-header')
+        const boardHeader = page.locator('h2.board-header')
         await expect(boardHeader).toContainText('Verify')
 
         await page.click('#btn_submit')
 
-        const message = await page.locator('.alert-success')
+        const message = page.locator('.alert-success')
         await expect(message).toContainText('You successfully submitted your transaction.')
     })
 })

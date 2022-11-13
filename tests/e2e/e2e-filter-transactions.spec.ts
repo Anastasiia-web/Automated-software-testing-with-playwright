@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.only("Filter transactions", () => {
+test.describe("Filter transactions", () => {
     // hook
     test.beforeEach(async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
@@ -11,24 +11,25 @@ test.describe.only("Filter transactions", () => {
     })
 
     test('Successful login', async ({ page }) => {
-        const signInBtn = await page.locator("input[name='submit']")
-        await expect(signInBtn).not.toBeVisible
+        const signInBtn = page.locator("input[name='submit']")
+        expect(signInBtn).not.toBeVisible
     })
 
     test('Verify the results for each account', async ({ page }) => {
-        await page.click('#transfer_funds_link')                // or  click('text=Transfer Funds')  
+        // await page.click('#transfer_funds_link')                // or  click('text=Transfer Funds')  
         await page.click('#account_activity_tab')
         await page.selectOption('#aa_accountId', '2')           // for option in dropdown choose the 'value' needed
-        const checkingAccount = await page.locator('#all_transactions_for_account tbody tr')   // test for tables (inside a div a table with 3 items)
+        const checkingAccount = page.locator('#all_transactions_for_account tbody tr') // test for tables (inside a div a table with 3 items)
+        // test for tables (inside a div a table with 3 items)
         await expect(checkingAccount).toHaveCount(3)
 
         await page.selectOption('#aa_accountId', '4')           // for option in dropdown choose the 'value' needed
-        const loanAccount = await page.locator('#all_transactions_for_account tbody tr')
+        const loanAccount = page.locator('#all_transactions_for_account tbody tr')
         await expect(loanAccount).toHaveCount(2)
 
         await page.selectOption('#aa_accountId', '6')           // for option in dropdown choose the 'value' needed
-        const noResults = await page.locator('.well')
-        await expect(noResults).toBeVisible
+        const noResults = page.locator('.well')
+        expect(noResults).toBeVisible
     })
 })
 
